@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>설문조사 양식</title>
+</head>
+<body>
+
+    <header>
+        <h1>설문조사 양식</h1>
+        <p>모든 항목에 빠짐없이 체크해주십시오.</p>
+    </header>
+
+    <hr>
+
+    <main>
+        <form action="">
+            <fieldset>
+                <legend>개인정보</legend>
+                <label for="name">이름</label>
+                <input type="text" id="name" name="name" placeholder="이름을 입력하세요">
+                <br>
+                <label for="email">이메일</label>
+                <input type="email" id="email" name="email" placeholder="이메일을 입력하세요">
+            </fieldset>
+            <fieldset>
+                <legend>설문</legend>
+                
+                <p>연령대를 선택하세요.</p>
+                <input type="radio" id="teen" name="age">
+                <label for="teen">10대</label>
+                <input type="radio" id="twenty" name="age">
+                <label for="twenty">20대</label>
+                <input type="radio" id="thirty" name="age">
+                <label for="thirty">30대</label>
+                <input type="radio" id="fourty" name="age">
+                <label for="fourty">40대</label>
+                <input type="radio" id="fifty" name="age">
+                <label for="fifty">50대</label>
+                <input type="radio" id="other" name="age">
+                <label for="other">그 외</label>
+
+                <p>학원 선택 시 그 기준은 어떻게 되시나요?</p>
+                <input type="checkbox" id="position" name="academy">
+                <label for="position">위치</label>
+                <input type="checkbox" id="price" name="academy">
+                <label for="price">비용</label>
+                <input type="checkbox" id="teacher" name="academy">
+                <label for="teacher">강사</label>
+                <input type="checkbox" id="infra" name="academy">
+                <label for="infra">시설</label>
+
+                <p>강의 만족도 평가</p>
+                <input type="radio" id="teen" name="satisfaction">
+                <label for="teen">1</label>
+                <input type="radio" id="twenty" name="satisfaction">
+                <label for="twenty">2</label>
+                <input type="radio" id="thirty" name="satisfaction">
+                <label for="thirty">3</label>
+                <input type="radio" id="fourty" name="satisfaction">
+                <label for="fourty">4</label>
+                <input type="radio" id="fifty" name="satisfaction">
+                <label for="fifty">5</label>
+            </fieldset>
+            <fieldset>
+                <legend>기타 의견</legend>
+                <textarea name="comment" id="comment" rows="3" cols="30"></textarea>
+            </fieldset>
+            <input type="submit">
+        </form>
+    </main>
+
+    <hr>
+
+    <footer>
+        <p>입력하느라 수고하셨습니다.</p>
+    </footer>
+
+</body>
+</html>
