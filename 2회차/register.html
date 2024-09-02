@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../3회차/register.css" rel="stylesheet">
     <title>회원가입</title>
   </head>
   <body>
@@ -11,14 +12,16 @@
     </header>
     <main>
       <h3>OZ코딩스쿨에 오신 것을 환영합니다!</h3>
-      <img src="./images/oz.webp" style="width: 15%;"/>
+      <div class="center">
+        <img src="./images/oz.webp" style="width: 50%;"/>
+      </div>
       <form>
         <label for="name">이름</label>
         <input type="text" id="name" required/>
         <br/>
         <input type="radio" id="female"/>
         <label for="female">여자</label>
-        <input type="radio" id="female"/>
+        <input type="radio" id="male"/>
         <label for="female">남자</label>
         <input type="radio" id="other"/>
         <label for="other">해당없음</label>
@@ -80,7 +83,9 @@
           </li>
         </ul>
         <hr/>
-        <input type="submit">회원가입하기</input>
+        <div class="center">
+          <input type="submit" value="회원가입하기">
+        </div>
       </form>
     </main>
     <footer>
