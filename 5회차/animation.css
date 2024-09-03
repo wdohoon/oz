@@ -1,0 +1,94 @@
+/* 기본 스타일 */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f3f3f3;
+    font-family: Arial, sans-serif;
+}
+
+.content {
+    text-align: center;
+}
+
+.content__title {
+    font-size: 48px;
+    color: #333;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.content__description {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 20px;
+    animation: slideUp 2s ease-in-out;
+}
+
+.content__button {
+    padding: 15px 30px;
+    font-size: 16px;
+    color: white;
+    background-color: #5a67d8;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    animation: pulse 2s infinite;
+}
+
+.content__button:hover {
+    background-color: #434190;
+}
+
+/* 애니메이션 정의 */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* 반응형 웹 디자인 */
+@media (max-width: 600px) {
+    .content__title {
+        font-size: 36px;
+    }
+
+    .content__description {
+        font-size: 16px;
+    }
+
+    .content__button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
