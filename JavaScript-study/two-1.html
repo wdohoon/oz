@@ -1,10 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>사용자 정보 입력받고 출력하기</title>
+  <style>
+    body {
+      background-color: #f0f8ff;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin: 10px 0;
+    }
+
+    #name {
+      color: blue;
+    }
+
+    #age {
+      color: #151ea6;
+    }
+
+    #color {
+      color: #ff6347;
+    }
+  </style>
 </head>
 <body>
+<h1 id="name"></h1>
+<p id="age"></p>
+<p id="color"></p>
 
+<script>
+  // 이름 입력받기 (prompt)
+  const nameElement = document.querySelector("#name");
+  let name = prompt("당신의 이름은?");
+  nameElement.textContent = `이름: ${name}`;
+
+  // 나이 입력받기 및 타입 체크 (prompt, typeof)
+  const ageElement = document.querySelector("#age");
+  let age = prompt("당신의 나이는?");
+  ageElement.textContent = `저의 나이는 ${age}살 입니다! (타입: ${typeof age})`;
+
+  // 좋아하는 색깔 입력받기 (prompt, .textContent)
+  const colorElement = document.querySelector("#color");
+  let favoriteColor = prompt("당신이 좋아하는 색깔은 무엇입니까?");
+  colorElement.textContent = `좋아하는 색깔은 ${favoriteColor}입니다!`;
+
+  // 확인 또는 취소 확인 (confirm)
+  let answer = confirm("취소나 확인을 눌러보시겠습니까?");
+  console.log(`사용자가 확인을 눌렀나요? ${answer}`);
+
+  // typeof 사용
+  console.log(`name 변수의 타입은: ${typeof name}`);
+  console.log(`age 변수의 타입은: ${typeof age}`);
+  console.log(`favoriteColor 변수의 타입은: ${typeof favoriteColor}`);
+
+  // 문자열 포매팅 사용
+  let formattedString = `이름: ${name}, 나이: ${age}, 좋아하는 색깔: ${favoriteColor}`;
+  console.log(`포매팅된 문자열: ${formattedString}`);
+</script>
 </body>
 </html>
