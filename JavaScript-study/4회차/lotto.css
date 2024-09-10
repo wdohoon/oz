@@ -1,0 +1,107 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #a8edea, #fed6e3);
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 450px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.lotto {
+    margin-top: 20px;
+}
+
+#today {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.numbers {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.each {
+    font-size: 1.8em;
+    font-weight: bold;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    margin-bottom: 10px;
+}
+
+/* 각 번호 범위에 따른 화려한 색상 설정 */
+.range1 {
+    background: radial-gradient(circle, #FF6B6B, #FF3E3E);
+    color: #fff;
+}
+
+.range2 {
+    background: radial-gradient(circle, #6BFF8C, #3EFF57);
+    color: #fff;
+}
+
+.range3 {
+    background: radial-gradient(circle, #6B9EFF, #3E73FF);
+    color: #fff;
+}
+
+.range4 {
+    background: radial-gradient(circle, #FFE96B, #FFD13E);
+    color: #333;
+}
+
+.range5 {
+    background: radial-gradient(circle, #D86BFF, #B03EFF);
+    color: #fff;
+}
+
+.each:hover {
+    transform: scale(1.2);
+}
+
+button {
+    background-color: #2980b9;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background-color: #3498db;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+    background-color: #1f618d;
+}
