@@ -19,8 +19,14 @@ h2 {
     flex-wrap: wrap;
     justify-content: center;
 }
-#winningNumbers,
+#winningNumbers{
+    display: flex;
+}
 #lottoNumbers{
+    display: flex;
+    flex-direction: column;
+}
+.lotto-set{
     display: flex;
 }
 .number {
