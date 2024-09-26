@@ -82,6 +82,7 @@ body {
 
 .zero {
     width: 50%;
+    border-radius: 0 0 0 20px;
 }
 
 .operator {
