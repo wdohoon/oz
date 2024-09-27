@@ -91,19 +91,21 @@ top_btn.addEventListener("click", function(){
 })
 
 reset_btn.addEventListener("click", function(){
-    // 기존 강아지 이미지를 모두 지움
+    // Clear existing dog images and reset the array
     main.innerHTML = "";
-    currentDogs.length = 0; // currentDogs 배열도 초기화
+    currentDogs.length = 0;
 
-    // 새로운 강아지 이미지를 받아옴
-    request1.open("GET", apiRandomDogs);
-    request1.addEventListener("load", function(){
-        const response = JSON.parse(request1.response);
+    // Create a new XMLHttpRequest object
+    const newRequest = new XMLHttpRequest();
+    newRequest.open("GET", apiRandomDogs);
+    newRequest.addEventListener("load", function(){
+        const response = JSON.parse(newRequest.response);
         response.message.forEach(function(item){
             currentDogs.push(item);
             displayDogs(item);
         });
     });
-    request1.send();
+    newRequest.send();
 });
+
 
