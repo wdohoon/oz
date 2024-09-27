@@ -35,7 +35,12 @@ buttons.forEach((button) => {
             resetCalculator();
         }
 
-        // 그 외의 버튼들은 아직 처리하지 않습니다.
+        // 그 외의 버튼들 처리 (±, %)
+        else if (buttonText === '±') {
+            toggleSign();
+        } else if (buttonText === '%') {
+            inputPercent();
+        }
     });
 });
 
@@ -51,6 +56,7 @@ function inputDigit(digit) {
             display.textContent += digit;
         }
     }
+    updateFontSize();
 }
 
 // 소수점을 입력하는 함수
@@ -63,6 +69,7 @@ function inputDecimal(dot) {
     if (!display.textContent.includes(dot)) {
         display.textContent += dot;
     }
+    updateFontSize();
 }
 
 // 연산자를 처리하는 함수
@@ -79,28 +86,49 @@ function handleOperator(nextOperator) {
         firstOperand = inputValue;
     } else if (operator) {
         const result = calculate(firstOperand, inputValue, operator);
-        display.textContent = String(result);
+        display.textContent = formatResult(result);
         firstOperand = result;
     }
 
     waitingForSecondOperand = true;
     operator = nextOperator === '=' ? null : nextOperator;
     console.log(`First Operand: ${firstOperand}, Operator: ${operator}`);
+    updateFontSize();
 }
 
 // 계산을 수행하는 함수
 function calculate(firstOperand, secondOperand, operator) {
+    let result;
     if (operator === '+') {
-        return firstOperand + secondOperand;
+        result = firstOperand + secondOperand;
     } else if (operator === '−') {
-        return firstOperand - secondOperand;
+        result = firstOperand - secondOperand;
     } else if (operator === '×') {
-        return firstOperand * secondOperand;
+        result = firstOperand * secondOperand;
     } else if (operator === '÷') {
-        return firstOperand / secondOperand;
+        if (secondOperand === 0) {
+            alert('0으로 나눌 수 없습니다.');
+            return 0;
+        }
+        result = firstOperand / secondOperand;
+    } else {
+        return secondOperand;
     }
 
-    return secondOperand;
+    // 부동소수점 오류를 최소화하기 위해 결과를 반올림합니다.
+    result = parseFloat(result.toFixed(10));
+
+    return result;
+}
+
+// 결과를 포맷팅하는 함수
+function formatResult(result) {
+    if (result.toString().length > 12) {
+        // 지수 표기법으로 변환
+        return result.toExponential(5);
+    } else {
+        return result.toString();
+    }
 }
 
 // 계산기를 초기화하는 함수
@@ -109,4 +137,33 @@ function resetCalculator() {
     firstOperand = null;
     operator = null;
     waitingForSecondOperand = false;
+    updateFontSize();
+}
+
+// 부호를 변경하는 함수
+function toggleSign() {
+    const currentValue = parseFloat(display.textContent);
+    if (currentValue === 0) return;
+    display.textContent = (-currentValue).toString();
+    updateFontSize();
+}
+
+// 퍼센트를 계산하는 함수
+function inputPercent() {
+    const currentValue = parseFloat(display.textContent);
+    const newValue = currentValue / 100;
+    display.textContent = newValue.toString();
+    updateFontSize();
+}
+
+// 디스플레이 글자 크기를 조정하는 함수
+function updateFontSize() {
+    const length = display.textContent.length;
+    if (length > 10) {
+        display.style.fontSize = '30px';
+    } else if (length > 7) {
+        display.style.fontSize = '40px';
+    } else {
+        display.style.fontSize = '48px';
+    }
 }
