@@ -5,7 +5,7 @@ function App() {
     const [todoList, setTodoList] = useState([
         { id: 0, content: '자스' },
         { id: 1, content: '리액트' },
-        { id: 2, content: '타스' }
+        { id: 2, content: '공부' }
     ]);
 
     return (
