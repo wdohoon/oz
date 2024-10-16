@@ -31,7 +31,7 @@ function App() {
                 <Route path='/search' element={<Search/>}></Route>
             </Routes>
 
-            <footer>all rights reserved to OZ</footer>
+            <footer>all rights reserved to D.H</footer>
         </>
     )
 }
