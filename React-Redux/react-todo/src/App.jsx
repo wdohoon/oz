@@ -1,6 +1,4 @@
-import {useRef, useState} from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import {useEffect, useRef, useState} from 'react'
 import './App.css'
 
 function App() {
@@ -14,8 +12,43 @@ function App() {
 
     return (
         <>
+            <Clock />
             <TodoInput setTodo={setTodo} />
             <TodoList todo={todo} setTodo={setTodo} />
+        </>
+    )
+}
+
+const Clock = () => {
+    const [time, setTime] = useState(new Date())
+
+    useEffect(() => {
+        setInterval(() => {
+            setTime(new Date())
+        }, 1000)
+    }, [])
+
+    return (
+        <div>
+            {time.toDateString()}
+        </div>
+    )
+}
+
+const formatTime = (seconds) => {
+    const timeString = `
+    ${Math.floor(seconds / 3600)}:${Math.floor((seconds % 3600) / 60).toString().padStart(2, '0')}:${(seconds % 60).toString().padStart(2, '0')}
+    `;
+    return timeString;
+}
+
+const StopWatch = () => {
+    const [time, setTime] = useState(0);
+    const [isOn, setIsOn] = useState(false);
+
+    return (
+        <>
+            {formatTime(time)}
         </>
     )
 }
@@ -46,7 +79,7 @@ const TodoList = ({ todo, setTodo }) => {
         <>
             <ul>
                 {todo.map((el) => (
-                    <Todo todo={el} setTodo={setTodo} />
+                    <Todo key={todo.id} todo={el} setTodo={setTodo} />
                 ))}
             </ul>
         </>
@@ -56,7 +89,7 @@ const TodoList = ({ todo, setTodo }) => {
 const Todo = ({todo, setTodo}) => {
     return (
         <>
-            <li key={todo.id}>
+            <li>
                 {todo.content}
                 <button onClick={() => {
                     setTodo(prev => prev.filter(el => el.id !== todo.id))
