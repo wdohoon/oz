@@ -12,9 +12,9 @@ function App() {
 
     return (
         <>
-            <Clock />
-            <TodoInput setTodo={setTodo} />
-            <TodoList todo={todo} setTodo={setTodo} />
+            <Clock/>
+            <TodoInput setTodo={setTodo}/>
+            <TodoList todo={todo} setTodo={setTodo}/>
         </>
     )
 }
@@ -36,24 +36,35 @@ const Clock = () => {
 }
 
 const formatTime = (seconds) => {
-    const timeString = `
-    ${Math.floor(seconds / 3600)}:${Math.floor((seconds % 3600) / 60).toString().padStart(2, '0')}:${(seconds % 60).toString().padStart(2, '0')}
+    return `
+    ${String(Math.floor(seconds / 3600)).padStart(2, "0")}:
+    ${String(Math.floor((seconds % 3600) / 60)).padStart(2, '0')}:
+    ${String(seconds % 60).padStart(2, '0')}
     `;
-    return timeString;
 }
 
 const StopWatch = () => {
     const [time, setTime] = useState(0);
     const [isOn, setIsOn] = useState(false);
 
+    useEffect(() => {
+        if (isOn === true) {
+            setInterval(() => {
+                setTime((prev) => prev + 1)
+            }, 1000)
+        }
+    }, [])
+
     return (
-        <>
+        <div>
             {formatTime(time)}
-        </>
+            <button>{isOn ? "끄기" : "켜기"}</button>
+            <button>리셋</button>
+        </div>
     )
 }
 
-const TodoInput = ({ setTodo }) => {
+const TodoInput = ({setTodo}) => {
     const inputRef = useRef(null)
     const addTodo = () => {
         const newTodo = {
@@ -74,12 +85,12 @@ const TodoInput = ({ setTodo }) => {
     )
 }
 
-const TodoList = ({ todo, setTodo }) => {
+const TodoList = ({todo, setTodo}) => {
     return (
         <>
             <ul>
                 {todo.map((el) => (
-                    <Todo key={todo.id} todo={el} setTodo={setTodo} />
+                    <Todo key={todo.id} todo={el} setTodo={setTodo}/>
                 ))}
             </ul>
         </>
