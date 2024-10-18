@@ -12,7 +12,7 @@ function App() {
 
     return (
         <>
-            <Clock/>
+            <Timer/>
             <TodoInput setTodo={setTodo}/>
             <TodoList todo={todo} setTodo={setTodo}/>
         </>
@@ -46,20 +46,94 @@ const formatTime = (seconds) => {
 const StopWatch = () => {
     const [time, setTime] = useState(0);
     const [isOn, setIsOn] = useState(false);
+    const timerRef = useRef(null);
 
     useEffect(() => {
         if (isOn === true) {
-            setInterval(() => {
+            const timerId = setInterval(() => {
                 setTime((prev) => prev + 1)
-            }, 1000)
+            }, 1000);
+            timerRef.current = timerId;
+        } else {
+            clearInterval(timerRef.current);
         }
-    }, [])
+    }, [isOn])
 
     return (
         <div>
             {formatTime(time)}
-            <button>{isOn ? "끄기" : "켜기"}</button>
-            <button>리셋</button>
+            <button
+                onClick={() => setIsOn((prev) => !prev)}
+            >
+                {isOn ? "끄기" : "켜기"}
+            </button>
+            <button
+                onClick={() => {
+                    setTime(0);
+                    setIsOn(false);
+                }}
+            >
+                리셋
+            </button>
+        </div>
+    )
+}
+
+const Timer = () => {
+    const [startTime, setStartTime] = useState(0);
+    const [isOn, setIsOn] = useState(false);
+    const [time, setTime] = useState(0);
+    const timerRef = useRef(null);
+
+    useEffect(() => {
+        if (isOn && time > 0){
+            const timerId = setInterval(() => {
+                setTime((prev) => prev - 1)
+            }, 1000);
+            timerRef.current = timerId;
+        }else if (!isOn || time === 0){
+            clearInterval(timerRef.current);
+        }
+        return () => clearInterval(timerRef.current);
+    }, [isOn, time])
+
+    return (
+        <div>
+            <div>
+                {time ? formatTime(time) :formatTime(startTime) }
+                <button
+                    onClick={() => {
+                        setIsOn(true)
+                        setTime(time ? time : startTime)
+                        setStartTime(0)
+                    }}
+                >
+                    시작
+                </button>
+                <button
+                    onClick={() => setIsOn(false)}
+                >
+                    정지
+                </button>
+                <button
+                    onClick={() => {
+                        setTime(0);
+                        setIsOn(false);
+                    }}
+                >
+                    리셋
+                </button>
+            </div>
+            <input
+                type="range"
+                value={startTime}
+                onChange={(e) =>
+                    setStartTime(e.target.value)
+                }
+                max='3600'
+                step='30'
+                min='0'
+            />
         </div>
     )
 }
