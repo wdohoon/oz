@@ -1,0 +1,172 @@
+
+/* App.css */
+
+.app-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial, sans-serif';
+}
+
+.app-title {
+    text-align: center;
+    color: #333;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.todo-input-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.todo-input {
+    padding: 10px;
+    width: 60%;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.add-button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-button:hover {
+    background-color: #0056b3;
+}
+
+.todo-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.todo-item {
+    margin: 10px 0;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.todo-item:hover {
+    transform: scale(1.02);
+    background-color: #f1f1f1;
+}
+
+.todo-content {
+    flex-grow: 1;
+}
+
+.todo-time {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.todo-buttons {
+    display: flex;
+}
+
+.start-button, .delete-button {
+    padding: 10px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.start-button {
+    background-color: #28a745;
+    color: white;
+}
+
+.start-button:hover {
+    background-color: #218838;
+}
+
+.delete-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
+
+.toggle-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.toggle-button:hover {
+    background-color: #5a6268;
+}
+
+.clock {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.advice-container {
+    text-align: center;
+    margin-bottom: 20px;
+    font-style: italic;
+    color: #555;
+}
+
+.stopwatch-container, .timer-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.time-display {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.reset-button, .stop-button, .start-button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.reset-button {
+    background-color: #ffc107;
+    color: white;
+}
+
+.reset-button:hover {
+    background-color: #e0a800;
+}
+
+.timer-range {
+    width: 100%;
+    margin-top: 10px;
+}

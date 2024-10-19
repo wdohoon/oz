@@ -12,6 +12,9 @@ function App() {
         if (currentTodo){
             fetch(`http://localhost:3000/todo/${currentTodo}`, {
                 method: "PATCH",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 body: JSON.stringify({ time: todo.find((el) => el.id === currentTodo).time + 1}) ,
             }).then(res => res.json())
                 .then(res => setTodo(prev => prev.map(
@@ -26,12 +29,15 @@ function App() {
 
     useEffect(() => {
         if(data) setTodo(data);
-    }, [])
+    }, [data])
 
     return (
-        <>
+        <div className="app-container">
+            <h1 className="app-title">Todo List</h1>
+            <Clock />
             <Advice/>
             <button
+                className="toggle-button"
                 onClick={() => setIsTimer(prev => !prev)}
             >
                 {isTimer ? '스톱워치로 변경' : '타이머로 변경'}
@@ -48,7 +54,7 @@ function App() {
                 setCurrentTodo={setCurrentTodo}
                 currentTodo={currentTodo}
             />
-        </>
+        </div>
     )
 }
 
@@ -61,6 +67,9 @@ const TodoInput = ({setTodo}) => {
         }
         fetch("http://localhost:3000/todo", {
             method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify(newTodo),
         })
             .then(res => res.json())
@@ -68,61 +77,65 @@ const TodoInput = ({setTodo}) => {
     }
 
     return (
-        <>
+        <div className="todo-input-container">
             <input
                 type="text"
                 ref={inputRef}
+                className="todo-input"
+                placeholder="새로운 할 일을 입력하세요"
             />
-            <button onClick={addTodo}>추가</button>
-        </>
+            <button className="add-button" onClick={addTodo}>추가</button>
+        </div>
     )
 }
 
 const TodoList = ({todo, setTodo, setCurrentTodo, currentTodo}) => {
     return (
-        <>
-            <ul>
-                {todo.map((el) => (
-                    <Todo
-                        key={todo.id}
-                        todo={el}
-                        setTodo={setTodo}
-                        setCurrentTodo={setCurrentTodo}
-                        currentTodo={currentTodo}
-                    />
-                ))}
-            </ul>
-        </>
+        <ul className="todo-list">
+            {todo.map((el) => (
+                <Todo
+                    key={el.id}
+                    todo={el}
+                    setTodo={setTodo}
+                    setCurrentTodo={setCurrentTodo}
+                    currentTodo={currentTodo}
+                />
+            ))}
+        </ul>
     )
 }
 
 const Todo = ({todo, setTodo, setCurrentTodo, currentTodo}) => {
     return (
-        <>
-            <li className={currentTodo === todo.id ? "current" : ""}>
-                <div>
-                    {todo.content}
-                    <br/>
-                    {formatTime(todo.time)}
-                </div>
+        <li className={`todo-item ${currentTodo === todo.id ? "current" : ""}`}>
+            <div className="todo-content">
+                {todo.content}
+                <br/>
+                <span className="todo-time">{formatTime(todo.time)}</span>
+            </div>
+            <div className="todo-buttons">
                 <button
+                    className="start-button"
                     onClick={() => setCurrentTodo(todo.id)}
                 >
                     시작하기
                 </button>
-                <button onClick={() => {
-                    fetch(`http://localhost:3000/todo/${todo.id}`,{
-                        method: "DELETE",
-                    }).then((res) => {
-                        if (res.ok) {
-                            setTodo(prev => prev.filter(el => el.id !== todo.id))
-                        }
-                    })
-                }}>
+                <button
+                    className="delete-button"
+                    onClick={() => {
+                        fetch(`http://localhost:3000/todo/${todo.id}`,{
+                            method: "DELETE",
+                        }).then((res) => {
+                            if (res.ok) {
+                                setTodo(prev => prev.filter(el => el.id !== todo.id))
+                            }
+                        })
+                    }}
+                >
                     삭제
                 </button>
-            </li>
-        </>
+            </div>
+        </li>
     )
 }
 
@@ -142,19 +155,17 @@ const useFetch = (url) => {
 }
 
 const Advice = () => {
-
     const [isLoading, data] = useFetch("https://korean-advice-open-api.vercel.app/api/advice");
 
     return (
-        <>
+        <div className="advice-container">
             {!isLoading && (
                 <>
-                    <div>{data.message}</div>
-                    <div>-{data.author}-</div>
+                    <div className="advice-message">{data.message}</div>
+                    <div className="advice-author">-{data.author}-</div>
                 </>
             )}
-        </>
-
+        </div>
     )
 }
 
@@ -162,13 +173,14 @@ const Clock = () => {
     const [time, setTime] = useState(new Date())
 
     useEffect(() => {
-        setInterval(() => {
+        const timerId = setInterval(() => {
             setTime(new Date())
         }, 1000)
+        return () => clearInterval(timerId);
     }, [])
 
     return (
-        <div>
+        <div className="clock">
             {time.toDateString()}
         </div>
     )
@@ -195,17 +207,20 @@ const StopWatch = ({ time, setTime }) => {
         } else {
             clearInterval(timerRef.current);
         }
+        return () => clearInterval(timerRef.current);
     }, [isOn])
 
     return (
-        <div>
-            {formatTime(time)}
+        <div className="stopwatch-container">
+            <div className="time-display">{formatTime(time)}</div>
             <button
+                className="toggle-button"
                 onClick={() => setIsOn((prev) => !prev)}
             >
                 {isOn ? "끄기" : "켜기"}
             </button>
             <button
+                className="reset-button"
                 onClick={() => {
                     setTime(0);
                     setIsOn(false);
@@ -235,10 +250,11 @@ const Timer = ({ time, setTime}) => {
     }, [isOn, time])
 
     return (
-        <div>
-            <div>
+        <div className="timer-container">
+            <div className="time-display">
                 {time ? formatTime(time) : formatTime(startTime)}
                 <button
+                    className="start-button"
                     onClick={() => {
                         setIsOn(true)
                         setTime(time ? time : startTime)
@@ -248,11 +264,13 @@ const Timer = ({ time, setTime}) => {
                     시작
                 </button>
                 <button
+                    className="stop-button"
                     onClick={() => setIsOn(false)}
                 >
                     정지
                 </button>
                 <button
+                    className="reset-button"
                     onClick={() => {
                         setTime(0);
                         setIsOn(false);
@@ -262,10 +280,11 @@ const Timer = ({ time, setTime}) => {
                 </button>
             </div>
             <input
+                className="timer-range"
                 type="range"
                 value={startTime}
                 onChange={(e) =>
-                    setStartTime(e.target.value)
+                    setStartTime(Number(e.target.value))
                 }
                 max='3600'
                 step='30'
@@ -275,4 +294,4 @@ const Timer = ({ time, setTime}) => {
     )
 }
 
-export default App
+export default App;
