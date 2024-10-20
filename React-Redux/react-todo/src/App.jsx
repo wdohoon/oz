@@ -279,6 +279,7 @@ const Timer = ({ time, setTime}) => {
                     리셋
                 </button>
             </div>
+
             <input
                 className="timer-range"
                 type="range"
