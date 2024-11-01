@@ -21,9 +21,9 @@ function App() {
             <h1 className='text-4xl text-center'>포켓몬 도감</h1>
             <nav className='flex gap-10 justify-center'>
                 <Link to={'/'}>메인</Link>
-                <Link to={'/detail'}>상세정보</Link>
-                <Link to={'/search'}>검색</Link>
-                <Link to={'/favorite'}>찜목록</Link>
+                <Link to={'/pages/favorite'}>찜목록</Link>
+                <span>🔍</span>
+                <input type="text" className='border-b border-gray-500 px-2'/>
             </nav>
             <main className='flex justify-center flex-wrap gap-10 pt-20'>
                 <Routes>
