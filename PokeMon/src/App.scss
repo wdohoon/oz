@@ -1,0 +1,44 @@
+@font-face {
+  font-family: 'DungGeunMo';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+*{
+  font-family: 'DungGeunMo', serif;
+}
+
+:root {
+  --primary-bg: #1f1f2e; // 전체적인 배경색 어두운 톤
+  --secondary-bg: #2b2b3a; // 카드 배경에 사용할 색상
+  --primary-text: #e0e0e0; // 주 텍스트 색상
+  --highlight: #ffd700; // 하이라이트 색상 (금색)
+}
+
+body {
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
+  font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  font-family: 'Cinzel', serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--highlight);
+}
+
+/* Card.scss */
+.pokemon-card {
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease-out;
+}
+
+.pokemon-card:hover {
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.4);
+}
+
+.pokemon-card:hover .inner-card {
+  transform: perspective(1000px) rotateY(15deg) rotateX(15deg);
+}
