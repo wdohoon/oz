@@ -1,11 +1,16 @@
-import React from 'react';
+import {useSelector} from "react-redux";
+import {selectFavoritePokemons} from "../RTK/selector.js";
+import {Card} from "../component/Card.jsx";
+import React from "react";
 
-function Favorite() {
+export default function Favorite() {
+    const pokemon = useSelector(selectFavoritePokemons);
     return (
         <div>
-
+            {pokemon.map((el) => (
+                <Card pokemon={el} key={el.id} />
+            ))}
         </div>
     );
 }
 
-export default Favorite;
