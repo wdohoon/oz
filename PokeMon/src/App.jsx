@@ -26,7 +26,7 @@ function App() {
             <h1 className='border-t-[30px] border-t-[red] bg-black text-white text-4xl text-center'>
                 {t('pokedex')}
             </h1>
-            <nav className='flex gap-10 justify-center py-6 border-b border-gray-700 bg-secondary-bg/70 shadow-lg shadow-black rounded-lg mx-10 my-5'>
+            <nav className='flex gap-10 justify-center py-6 border-b border-gray-700 bg-secondary-bg/70 shadow-lg shadow-black rounded-lg mx-10 my-5 flex-wrap'>
                 <Link className='hover:text-highlight transition duration-300' to={'/'}>{t('main')}</Link>
                 <Link className='hover:text-highlight transition duration-300' to={'/favorite'}>{t('myPokemon')}</Link>
                 <div className='flex items-center gap-2'>
