@@ -68,7 +68,6 @@ const TmdbComponents = () => {
                 }
             })
             .then( res => {
-                console.log("getMovieList = ", res)
                 setMovieList(res.data.results)
             })
             .catch(err => console.log(err))
@@ -85,7 +84,6 @@ const TmdbComponents = () => {
                 },
             })
             .then((res) => {
-                console.log("movie Detail res: ", res);
                 setMovieDetail({...res.data})
             })
             .catch((err) => {
@@ -104,7 +102,6 @@ const TmdbComponents = () => {
                 },
             })
             .then((res) => {
-                console.log("movie Image res: ", res);
                 setMovieImage((prev) => (res.data.backdrops));
             })
             .catch((err) => {
@@ -120,8 +117,8 @@ const TmdbComponents = () => {
 
     return (
         <div>
-            {/*<MovieList movieList={movieList}/>*/}
-            {/*<MovieDetail movie={movieDetail}/>*/}
+            <MovieList movieList={movieList}/>
+            <MovieDetail movie={movieDetail}/>
             <MovieImage movieImages={movieImage}/>
         </div>
     );
